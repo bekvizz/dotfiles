@@ -1,0 +1,283 @@
+@import url("../../.cache/wal/colors-waybar.css");
+
+:root {
+  font-family: "JetBrainsMono Nerd Font", monospace;
+  font-size: 16px;
+  --red: #f14241;
+  --blue: @color5;
+  --disabled: #828282;
+  --white: @color7;
+  --text-color: @foreground;
+  --border-color: @color5;
+  --noti-bg: @background;
+  --card-bg: rgba(255, 255, 255, 0.06);
+  --active: @color4;
+}
+
+/* Global reset for GTK focus rings, outlines, and theme shadows */
+* {
+  outline: none;
+  outline-width: 0;
+  outline-color: transparent;
+  box-shadow: none;
+  text-shadow: none;
+  -gtk-icon-shadow: none;
+  background-image: none;
+}
+
+button,
+button:hover,
+button:focus,
+button:active {
+  outline: none;
+  outline-color: transparent;
+  box-shadow: none;
+  text-shadow: none;
+  -gtk-icon-shadow: none;
+  background-image: none;
+  border: none;
+}
+
+.control-center,
+.notification,
+.notification-row,
+.notification-content,
+.notification-group,
+.notification-background,
+.notification-action,
+.notification-default-action,
+.floating-notifications,
+.notification-row .notification-background .notification,
+.inline-reply-entry,
+.inline-reply-button,
+.widget-title,
+.widget-title > button,
+.widget-title > label,
+.widget-buttons-grid,
+.widget-buttons-grid > flowbox > flowboxchild > button,
+.widget-slider,
+.widget-volume,
+.widget-backlight,
+.widget-mpris,
+.widget-mpris > box > button,
+.widget-mpris-player,
+.widget-mpris-album-art,
+.close-button,
+.close-button:hover {
+  font-size: 1rem;
+  color: var(--text-color);
+  border-radius: 0.75rem;
+  box-shadow: none;
+  border: none;
+}
+
+/* Control center window */
+.control-center {
+  background: var(--noti-bg);
+  border: 2px solid var(--border-color);
+  padding: 12px;
+}
+
+/* Control center label and Clear Button */
+.widget-title {
+  padding-bottom: 8px;
+}
+.widget-title > label {
+  font-size: 1.3rem;
+  font-weight: bold;
+}
+.widget-title > button {
+  font-weight: bold;
+  background: var(--card-bg);
+  padding: 4px 12px;
+  border-radius: 0.75rem;
+  transition: background-color 0.15s ease-in-out;
+}
+.widget-title > button:hover {
+  background: var(--red);
+  color: var(--noti-bg);
+}
+
+/* Button grid icons */
+.widget-buttons-grid {
+  background: transparent;
+  padding: 0;
+  margin: 6px 8px; /* Outer margin matching the slider */
+}
+
+.widget-buttons-grid > flowbox {
+  margin: 0;
+  padding: 0;
+}
+
+.widget-buttons-grid > flowbox > flowboxchild {
+  padding: 3px;
+  margin: 0;
+}
+
+.widget-buttons-grid > flowbox > flowboxchild > button {
+  background: var(--card-bg);
+  margin: 0;
+  padding: 10px;
+  border-radius: 0.75rem;
+  transition: background-color 0.15s ease-in-out;
+}
+
+.widget-buttons-grid > flowbox > flowboxchild > button:hover {
+  background: rgba(255, 255, 255, 0.14);
+}
+
+.widget-buttons-grid flowboxchild > button.toggle:checked {
+  background: var(--blue);
+  color: var(--noti-bg);
+}
+
+/* Volume and Backlight sliders */
+.widget-slider,
+.widget-volume,
+.widget-backlight {
+  background: transparent;
+  padding: 0;
+  margin: 6px 11px; /* 8px outer margin + 3px to match flowboxchild padding */
+}
+
+.widget-volume > box,
+.widget-backlight > box,
+.widget-slider > box {
+  background: var(--card-bg);
+  padding: 8px 12px;
+  border-radius: 0.75rem;
+}
+
+scale trough {
+  background-color: rgba(255, 255, 255, 0.12);
+  border-radius: 6px;
+  min-height: 8px;
+}
+
+scale highlight {
+  background-color: var(--blue);
+  border-radius: 6px;
+}
+
+scale slider {
+  background-color: var(--text-color);
+  border-radius: 50%;
+  min-height: 14px;
+  min-width: 14px;
+  margin: -3px 0;
+}
+
+/* Empty Placeholder & MPRIS */
+.placeholder label,
+.placeholder image {
+  color: var(--disabled);
+}
+
+.widget-mpris,
+.widget-mpris > box > button,
+.widget-mpris-player,
+.widget-mpris-album-art {
+  color: var(--text-color);
+  background: var(--card-bg);
+}
+
+/* Close button on notifications */
+.close-button,
+.close-button:hover {
+  background: var(--red);
+  padding: 0;
+  margin: 0;
+  border-radius: 100%;
+}
+
+.inline-reply-entry {
+  background: var(--card-bg);
+  caret-color: var(--text-color);
+  border: 1px solid var(--border-color);
+}
+.inline-reply-button {
+  background: var(--card-bg);
+  border: 1px solid var(--border-color);
+}
+.inline-reply-button:hover {
+  background: var(--active);
+}
+.inline-reply-button:disabled {
+  color: var(--disabled);
+  background: var(--card-bg);
+}
+
+/* For notification outside of control center */
+.notification-row .notification-background .notification {
+  background: var(--noti-bg);
+  padding: 0.75rem;
+  border: 2px solid var(--border-color);
+}
+
+.notification-action:hover,
+.notification-default-action:hover {
+  background: var(--card-bg);
+}
+
+/* Space around the notification widget */
+.notification-background,
+.notification-row {
+  padding: 0;
+  background: none;
+  outline: none;
+  margin: 4px 0;
+}
+
+/* Notification background in control-center list */
+.control-center .notification-row {
+  background-color: var(--card-bg);
+}
+.control-center .notification-row:focus,
+.control-center .notification-row:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Group of notifications from same source */
+.notification-group {
+  padding: 0.5rem;
+  margin: 0.25rem 0;
+  background: var(--card-bg);
+}
+.notification-group:focus {
+  background: rgba(255, 255, 255, 0.1);
+}
+.notification-group > .notification {
+  padding: 0.5rem;
+  margin: 0.5rem 0;
+}
+
+/* Completely hide scrollbars across all states and hovers */
+scrollbar,
+scrollbar *,
+scrollbar.vertical,
+scrollbar.vertical trough,
+scrollbar.vertical slider,
+scrollbar.vertical:hover,
+scrollbar.vertical trough:hover,
+scrollbar.vertical slider:hover {
+  background: transparent;
+  background-color: transparent;
+  border: none;
+  min-width: 0;
+  min-height: 0;
+  width: 0;
+  margin: 0;
+  padding: 0;
+  opacity: 0;
+  -gtk-icon-shadow: none;
+  box-shadow: none;
+}
+
+scrolledwindow,
+scrolledwindow viewport {
+  border: none;
+  background: transparent;
+  padding: 0;
+  margin: 0;
+}

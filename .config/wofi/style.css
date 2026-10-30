@@ -1,0 +1,92 @@
+@import url("~/.cache/wal/colors-waybar.css");
+
+@define-color mauve @color5;
+@define-color red @color4;
+@define-color lavender @color5;
+@define-color text @foreground;
+@define-color bg @background;
+
+* {
+    font-family: "JetBrainsMono Nerd Font";
+    font-size: 16px;
+    border: none;
+    outline: none;
+    text-shadow: none;
+}
+
+window {
+    padding: 20px;
+    background-color: transparent;
+}
+
+#outer-box {
+ background-color: @bg;
+    border-radius: 20px;
+    padding: 10px;
+    border: 2px solid @mauve;
+}
+
+#inner-box {
+    margin: 2px;
+    padding: 5px;
+    background-color: transparent;
+}
+
+#scroll {
+    margin: 0;
+    padding: 10px;
+    background-color: transparent;
+}
+
+#input {
+    margin: 10px 20px;
+    padding: 10px;
+    color: @text;
+    background-color: rgba(255, 255, 255, 0.05);
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.35);
+}
+
+#input image {
+    color: @red;
+    padding-right: 10px;
+}
+
+#text {
+    margin: 5px;
+    color: @text;
+    background-color: transparent;
+    transition: all 0.2s ease-in-out;
+    white-space: pre; /* Keeps column alignment fixed */
+}
+
+#entry:selected #text {
+    color: @text;
+    font-weight: bold;
+    background-color: transparent; /* Force transparency when selected */
+}
+
+#entry {
+    margin: 4px 20px;
+    padding: 8px 12px;
+    border-radius: 12px;
+    transition: all 0.2s ease-in-out;
+}
+
+#entry arrow {
+    color: @lavender;
+}
+
+#entry:selected {
+    background-color: @mauve;
+    border-radius: 12px;
+}
+
+#entry:drop(active) {
+    background-color: @lavender;
+}
+
+list, #scroll, #inner-box {
+    border: none;
+    outline: none;
+}

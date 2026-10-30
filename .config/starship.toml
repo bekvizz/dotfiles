@@ -1,0 +1,81 @@
+format = """ \
+[](fg:4)\
+$os\
+[](bg:4 fg:3)\
+$username\
+[](bg:3 fg:5)\
+$directory\
+[ ](fg:5)\
+$git_branch\
+$git_status\
+$all\
+$character"""
+
+[username]
+show_always = true
+format = '[$user ](bg:3 fg:0)'
+disabled = false
+
+[os]
+disabled = false
+style = 'bg:4 fg:0'
+
+[os.symbols]
+Alpaquita = " "
+Alpine = " "
+AlmaLinux = " "
+Amazon = " "
+Android = " "
+Arch = " "
+Artix = " "
+CachyOS = " "
+CentOS = " "
+Debian = " "
+DragonFly = " "
+Emscripten = " "
+EndeavourOS = " "
+Fedora = " "
+FreeBSD = " "
+Garuda = "󰛓 "
+Gentoo = " "
+HardenedBSD = "󰞌 "
+Illumos = "󰈸 "
+Kali = " "
+Linux = " "
+Mabox = " "
+Macos = " "
+Manjaro = " "
+Mariner = " "
+MidnightBSD = " "
+Mint = " "
+NetBSD = " "
+NixOS = " "
+Nobara = " "
+OpenBSD = "󰈺 "
+openSUSE = " "
+OracleLinux = "󰌷 "
+Pop = " "
+Raspbian = " "
+Redhat = " "
+RedHatEnterprise = " "
+RockyLinux = " "
+Redox = "󰀘 "
+Solus = "󰠳 "
+SUSE = " "
+Ubuntu = " "
+Unknown = " "
+Void = " "
+Windows = "󰍲 "
+
+[cmd_duration]
+format = "[$duration](fg:3)"
+
+[directory]
+format = "[$path](bg:5 fg:0)"
+truncation_length = 2
+truncation_symbol = "…/"
+
+[character]
+success_symbol = "[](bold 5)"
+error_symbol = "[✗](bold 1)"
+disabled = false

@@ -1,0 +1,21 @@
+# Config for wofi-wifi-menu
+
+# position values:
+# 1 2 3
+# 8 0 4
+# 7 6 5
+POSITION=0
+
+# Offsets (ignored when centered / POSITION=0)
+YOFF=0
+XOFF=0
+
+# Fields to be displayed
+FIELDS=SSID,FREQ,SECURITY,BARS
+
+# Sizing calibrated for 16px JetBrainsMono + outer/entry paddings
+CHAR_MULTIPLIER=12
+EXTRA_WIDTH=140
+
+# Max visible lines in menu
+MAX_LINES=10

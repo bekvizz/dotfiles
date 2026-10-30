@@ -1,0 +1,141 @@
+input {
+    keyboard {
+        xkb {
+            layout "us,ru"
+            options "grp:caps_toggle"
+        }
+        numlock
+    }
+
+    mouse {
+        // Flat acceleration profile for raw input
+        accel-profile "flat"
+    }
+
+    trackpoint {
+        // Enables the physical ThinkPad tracking nub and middle-click scrolling
+        accel-profile "flat"
+        middle-emulation
+    }
+}
+
+// Built-in laptop monitor settings
+output "eDP-1" {
+    scale 1.25  // Adjust this if the UI is too large or too small
+    position x=0 y=0
+}
+
+window-rule {
+    match app-id="^wl-mirror$"
+    open-fullscreen true
+    open-on-output "HDMI-A-1"
+}
+
+// settings that influence how windows are positioned and sized.
+layout {
+    gaps 10
+
+    center-focused-column "never"
+
+    preset-column-widths {
+        proportion 0.33333
+        proportion 0.5
+        proportion 0.66667
+    }
+
+    default-column-width { proportion 0.5; }
+
+    focus-ring {
+        width 2
+        active-color "#7fc8ff"
+        inactive-color "#505050"
+    }
+
+    border {
+        off
+        width 2
+        active-color "#3d3d3d"
+        inactive-color "#1e1e1e"
+        urgent-color "#c85858"
+    }
+
+    // drop shadows for windows.
+    shadow {
+        on
+        softness 10
+        spread 5
+        offset x=0 y=5
+        color "#0007"
+    }
+
+    background-color "transparent"
+}
+
+recent-windows {
+    debounce-ms 750
+    open-delay-ms 150
+
+    highlight {
+        active-color "#3d3d3d"
+        urgent-color "#c85858"
+        corner-radius 8
+    }
+
+    previews {
+        max-height 480
+        max-scale 0.5
+    }
+
+    binds {
+        Mod+Tab         { next-window; }
+        Mod+Shift+Tab   { previous-window; }
+    }
+}
+
+cursor {
+    xcursor-theme "Bibata-Modern-Ice"
+    xcursor-size 24
+
+    hide-after-inactive-ms 3000
+}
+
+overview {
+    workspace-shadow {
+      off
+    }
+}
+
+environment {
+    QS_ICON_THEME "Papirus-Dark"
+}
+
+// autostart
+spawn-at-startup "waybar"
+spawn-at-startup "kdeconnect-indicator"
+spawn-at-startup "swaync"
+spawn-at-startup "swayidle" "-w"
+spawn-at-startup "bash" "-c" "wl-paste --watch cliphist store"
+spawn-at-startup "/usr/lib/polkit-kde-authentication-agent-1"
+spawn-at-startup "wal" "-R"
+spawn-at-startup "swaybg" "-m" "fill" "-i" "~/Pictures/wallpapers/eepy_pony.png"
+spawn-at-startup "/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1"
+spawn-at-startup "nm-applet" "--indicator"
+
+hotkey-overlay {
+    skip-at-startup
+}
+
+prefer-no-csd
+
+screenshot-path "~/Pictures/Desktop Screenshots/Screenshot_%Y%m%d_%H%M%S.png"
+
+animations {
+    slowdown 1.5
+}
+
+debug {
+    honor-xdg-activation-with-invalid-serial
+}
+
+include "binds.kdl"
+include "window-rules.kdl"
