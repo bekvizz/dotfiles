@@ -1,0 +1,7 @@
+timeout 1200 'sh -c "$HOME/.config/niri/lock.sh"'
+
+timeout 2400 'niri msg action power-off-monitors'
+
+resume 'niri msg action power-on-monitors'
+
+before-sleep 'sh -c "$HOME/.config/niri/lock.sh"'

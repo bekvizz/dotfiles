@@ -1,5 +1,7 @@
 # Import Pywal dynamic terminal colors
-(cat ~/.cache/wal/sequences &)
+if [[ -r "$HOME/.cache/wal/sequences" ]]; then
+    cat "$HOME/.cache/wal/sequences"
+fi
 
 # Lines added by zsh-newuser-install
 HISTFILE=~/.histfile
@@ -62,4 +64,4 @@ autoload -U down-line-or-beginning-search
 zle -N up-line-or-beginning-search
 zle -N down-line-or-beginning-search
 bindkey "^[[A" up-line-or-beginning-search   # Up Arrow
-bindkey "^[[B" down-line-or-beginning-search # Down Arrow%  
+bindkey "^[[B" down-line-or-beginning-search # Down Arrow  

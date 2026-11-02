@@ -45,7 +45,6 @@ papirus-icon-theme
 pavucontrol
 pipewire-pulse
 polkit-gnome
-polkit-kde-agent
 power-profiles-daemon
 samba
 sddm
@@ -75,3 +74,9 @@ zsh
 zsh-autosuggestions
 zsh-completions
 zsh-syntax-highlighting
+kdeconnect
+pamixer
+playerctl
+swayidle
+wireplumber
+xsettingsd

@@ -1,4 +1,4 @@
-[config]
+colors=../../.cache/wal/colors-wofi
 show=drun
 prompt=Search
 width=520

@@ -1,10 +1,8 @@
-@import url("~/.cache/wal/colors-waybar.css");
-
-@define-color mauve @color5;
-@define-color red @color4;
-@define-color lavender @color5;
-@define-color text @foreground;
-@define-color bg @background;
+@define-color mauve --wofi-color7;
+@define-color red --wofi-color6;
+@define-color lavender --wofi-color7;
+@define-color text --wofi-color1;
+@define-color bg --wofi-color0;
 
 * {
     font-family: "JetBrainsMono Nerd Font";
@@ -20,7 +18,7 @@ window {
 }
 
 #outer-box {
- background-color: @bg;
+    background-color: @bg;
     border-radius: 20px;
     padding: 10px;
     border: 2px solid @mauve;
@@ -57,7 +55,6 @@ window {
     color: @text;
     background-color: transparent;
     transition: all 0.2s ease-in-out;
-    white-space: pre; /* Keeps column alignment fixed */
 }
 
 #entry:selected #text {

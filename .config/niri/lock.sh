@@ -39,7 +39,6 @@ swaylock \
     --indicator-radius 100 \
     --indicator-thickness 7 \
     --indicator-idle-visible \
-    --grace 2 \
     --inside-color "${BG}88" \
     --inside-clear-color "${CLEAR}88" \
     --inside-ver-color "${ACCENT}88" \
@@ -49,10 +48,10 @@ swaylock \
     --ring-ver-color "$ACCENT" \
     --ring-wrong-color "$WRONG" \
     --key-hl-color "$KEY_HL" \
-    --bs-hl-color "$WRONG" \
     --line-color 00000000 \
     --separator-color 00000000 \
     --text-color "$FG" \
     --text-clear-color "$BG" \
     --text-ver-color "$BG" \
+    --bs-hl-color "$BS_HL" \
     --text-wrong-color "$BG"

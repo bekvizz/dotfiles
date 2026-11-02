@@ -7,7 +7,6 @@ binds {
 
     Mod+Shift+Slash { show-hotkey-overlay; }
     Mod+Shift+B hotkey-overlay-title="Restart Waybar" { spawn "bash" "-c" "killall waybar; waybar &"; }
-    Mod+Shift+W hotkey-overlay-title="WiFi Manager" { spawn "wofi-wifi-menu"; }
     Mod+Shift+M hotkey-overlay-title="Toggle Mirror" { spawn "sh" "-c" "~/.config/niri/toggle-mirror.sh"; }
 
     Mod+D hotkey-overlay-title="Open a Terminal" { spawn "alacritty"; }

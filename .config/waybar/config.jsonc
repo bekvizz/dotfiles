@@ -184,7 +184,7 @@
   "custom/kdeconnect": {
     "format": "{icon}",
     "format-icons": "",
-    "exec-on-event": "true",
+    "exec-on-event": true,
     "on-click": "kdeconnect-app",
     "tooltip-format": "KDE Connect",
   },
@@ -192,7 +192,7 @@
   "custom/bluetooth": {
     "format": "{icon}",
     "format-icons": "",
-    "exec-on-event": "true",
+    "exec-on-event": true,
     "on-click": "$HOME/scripts/rofi-bluetooth",
     "tooltip-format": "Bluetooth Menu",
   },
@@ -200,7 +200,7 @@
   "custom/wifi": {
     "format": "{icon}",
     "format-icons": "",
-    "exec-on-event": "true",
+    "exec-on-event": true,
     "on-click": "$HOME/scripts/rofi-wifi",
     "tooltip-format": "Wifi Menu",
   },
@@ -259,9 +259,7 @@
   "custom/power": {
     "format": "{icon}",
     "format-icons": "",
-    "exec-on-event": "true",
-    "on-click": "~/.config/waybar/scripts/powermenu.sh",
+    "on-click": "sh -c 'exec \"$HOME/.config/waybar/scripts/powermenu.sh\"'",
     "tooltip-format": "Power Menu"
-    },
   }
 }
