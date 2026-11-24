@@ -15,6 +15,10 @@ export XCURSOR_SIZE=24
 source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
+setwallp() {
+    "$HOME/.config/niri/set-wallpaper.sh" "$@"
+}
+
 # Wrapper to reset terminal attributes and restore Pywal colors after nano exits
 nano() {
     command nano "$@"

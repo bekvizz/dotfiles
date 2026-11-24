@@ -147,10 +147,10 @@ Use the included script to set the wallpaper and generate the matching Pywal16 p
 ~/.config/niri/set-wallpaper.sh "$HOME/Pictures/wallpapers/eepy_pony.png"
 ```
 
-To switch to another image later, pass its path to the same script:
+In an interactive Zsh terminal, use the `setwallp` shortcut to switch images:
 
 ```bash
-~/.config/niri/set-wallpaper.sh "$HOME/Pictures/wallpapers/another-image.jpg"
+setwallp "$HOME/Pictures/wallpapers/another-image.jpg"
 ```
 
 You can also run it without an argument:
