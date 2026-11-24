@@ -48,7 +48,7 @@ The power menu is implemented by `~/.config/waybar/scripts/powermenu.sh` and off
 
 ### Wofi and clipboard history
 
-Wofi is used for the application launcher and the power menu. The Niri clipboard shortcut opens `cliphist` history in Wofi; selecting an entry decodes it and copies it back to the Wayland clipboard.
+Wofi is used for the application launcher and the power menu. The Niri clipboard shortcut opens history in Wofi and copies the selected entry back to the Wayland clipboard. The watcher, picker and its menu cache use `$XDG_RUNTIME_DIR`, so history expires when the user runtime directory is removed, usually after the last login session ends.
 
 The Wofi palette is generated from the custom template at `.config/wal/templates/colors-wofi`. Its config refers to the generated cache file with a relative path, so it does not depend on a specific username or home-directory path.
 
@@ -60,14 +60,16 @@ The Wi-Fi and Bluetooth toggles use NetworkManager and BlueZ commands directly; 
 
 ### Locking and idle behavior
 
-`~/.config/niri/lock.sh` is the shared lock wrapper used by the Niri lock binding, the Waybar power menu, SwayNC and swayidle. It reads the current Pywal colors and wallpaper path, then starts swaylock-effects with a blurred wallpaper, clock, date and themed indicator.
+`~/.config/niri/lock.sh` is the shared lock wrapper used by the Niri lock binding, the Waybar power menu, SwayNC and swayidle. It validates the plain Pywal palette and opens the wallpaper as a file. The locker receives a fixed file-descriptor path and shows the blurred wallpaper, clock, date and indicator. Missing theme data falls back to built-in colors and a solid background when the image is unavailable.
 
 The swayidle configuration:
 
 - locks the session after 20 minutes of inactivity;
 - powers off monitors after 40 minutes;
 - powers monitors back on when activity resumes;
-- locks before system sleep.
+- locks before system sleep and responds to logind session-lock requests.
+
+The Waybar Suspend action also waits for the locker to succeed before requesting sleep.
 
 ### Wallpaper and dynamic colors
 
@@ -79,7 +81,7 @@ Pywal16 generates a palette from the wallpaper and makes it available to the app
 | Waybar | Imports `~/.cache/wal/colors-waybar.css` |
 | SwayNC | Imports `~/.cache/wal/colors-waybar.css` |
 | Wofi | Uses `~/.cache/wal/colors-wofi`, generated from the repository's custom template |
-| swaylock-effects | Reads `~/.cache/wal/colors.sh` and the wallpaper path saved by Pywal |
+| swaylock-effects | Uses the plain `colors` palette and wallpaper file opened by the lock wrapper |
 | Zsh | Loads Pywal's terminal sequences when the cache file exists |
 | Starship | Uses the terminal's indexed color palette in its prompt format |
 
@@ -276,6 +278,7 @@ Screenshots are saved under `~/Pictures/Desktop Screenshots/`. Audio and brightn
 │   │   ├── config.kdl
 │   │   ├── binds.kdl
 │   │   ├── window-rules.kdl
+│   │   ├── clipboard.sh
 │   │   ├── lock.sh
 │   │   ├── set-wallpaper.sh
 │   │   └── toggle-mirror.sh

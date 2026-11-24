@@ -60,6 +60,7 @@ thunar
 ttf-jetbrains-mono-nerd
 ttf-liberation
 tumbler
+unzip
 vivaldi
 vulkan-intel
 waybar

@@ -1,39 +1,46 @@
 #!/usr/bin/env bash
 
-# Source dynamic colors from Pywal
-if [ -f "$HOME/.cache/wal/colors.sh" ]; then
-    . "$HOME/.cache/wal/colors.sh"
+cache="${XDG_CACHE_HOME:-$HOME/.cache}/wal"
+# The plain palette contains one color per line. Accept only six hex digits.
+palette=()
+if [[ -f "$cache/colors" && -r "$cache/colors" ]]; then
+    mapfile -t -n 16 palette < "$cache/colors"
 fi
 
-# Fetch current wallpaper path from Pywal cache
-if [ -f "$HOME/.cache/wal/wal" ]; then
-    WALLPAPER="$(cat "$HOME/.cache/wal/wal")"
-fi
-
-# Helper to remove leading '#' from hex codes for swaylock
-hex() {
-    echo "${1#\#}"
+color() {
+    local value=${palette[$1]:-}
+    if [[ $value =~ ^#([[:xdigit:]]{6})$ ]]; then
+        printf '%s' "${BASH_REMATCH[1]}"
+    else
+        printf '%s' "$2"
+    fi
 }
 
-BG=$(hex "$background")
-FG=$(hex "$foreground")
-ACCENT=$(hex "$color5")
-RING=$(hex "$color8")       # Uses muted secondary dark color for the ring track
-KEY_HL=$(hex "$color2")     # Bright accent (or use $(hex "$foreground")) for keystrokes
-BS_HL=$(hex "$color1")      # Red for backspace
-CLEAR=$(hex "$color3")
-WRONG=$(hex "$color1")
+BG=$(color 0 1a1b26)
+FG=$(color 15 c0caf5)
+ACCENT=$(color 5 bb9af7)
+RING=$(color 8 565f89)
+KEY_HL=$(color 2 9ece6a)
+BS_HL=$(color 1 f7768e)
+CLEAR=$(color 3 e0af68)
+WRONG=$BS_HL
 
-# Launch swaylock-effects with blurred wallpaper and pywal palette
-swaylock \
+image_args=()
+if [[ -f "$cache/wal" && -r "$cache/wal" ]]; then
+    wallpaper=$(< "$cache/wal")
+    if [[ $wallpaper == /* && -f $wallpaper ]] && exec 3< "$wallpaper"; then
+        # swaylock-effects expands image paths. Give it only a fixed descriptor path.
+        image_args=(--image /proc/self/fd/3 --effect-blur 7x5 --effect-vignette 0.5:0.5)
+    fi
+fi
+
+exec swaylock \
     --daemonize \
-    --image "$WALLPAPER" \
-    --effect-blur 7x5 \
-    --effect-vignette 0.5:0.5 \
-    --fade-in 0.2 \
+    --color "$BG" \
+    "${image_args[@]}" \
     --clock \
     --timestr "%H:%M" \
-    --datestr "%A, %d %B" \
+    --datestr "%a, %d %b" \
     --font "JetBrainsMono Nerd Font" \
     --indicator \
     --indicator-radius 100 \

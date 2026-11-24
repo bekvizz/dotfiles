@@ -12,7 +12,7 @@ case "$selected" in
     niri msg action quit
     ;;
   *"Suspend")
-    systemctl suspend
+    "$HOME/.config/niri/lock.sh" && systemctl suspend
     ;;
   *"Reboot")
     systemctl reboot

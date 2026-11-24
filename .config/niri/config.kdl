@@ -115,7 +115,7 @@ spawn-at-startup "kdeconnect-indicator"
 spawn-at-startup "swaync"
 spawn-at-startup "swayidle" "-w"
 spawn-at-startup "xsettingsd"
-spawn-at-startup "bash" "-c" "wl-paste --watch cliphist store"
+spawn-at-startup "sh" "-c" r#"exec "$HOME/.config/niri/clipboard.sh" watch"#
 spawn-at-startup "sh" "-c" "\"$HOME/.config/niri/set-wallpaper.sh\""
 spawn-at-startup "/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1"
 spawn-at-startup "nm-applet" "--indicator"
@@ -130,10 +130,6 @@ screenshot-path "~/Pictures/Desktop Screenshots/Screenshot_%Y%m%d_%H%M%S.png"
 
 animations {
     slowdown 1.5
-}
-
-debug {
-    honor-xdg-activation-with-invalid-serial
 }
 
 include "binds.kdl"

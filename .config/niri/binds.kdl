@@ -3,7 +3,7 @@ binds {
     Mod+Space hotkey-overlay-title="Open Wofi" { spawn "wofi" "--show" "drun"; }
     Mod+E hotkey-overlay-title="Open Thunar" { spawn "thunar"; }
     Mod+Alt+L hotkey-overlay-title="Lock" { spawn "sh" "-c" "~/.config/niri/lock.sh"; }
-    Mod+V hotkey-overlay-title="Open a Clipboard" { spawn "bash" "-c" "cliphist list | wofi --show dmenu --prompt \"Clipboard\" | cliphist decode | wl-copy"; }
+    Mod+V hotkey-overlay-title="Open Clipboard History" { spawn "sh" "-c" r#"exec "$HOME/.config/niri/clipboard.sh" pick"#; }
 
     Mod+Shift+Slash { show-hotkey-overlay; }
     Mod+Shift+B hotkey-overlay-title="Restart Waybar" { spawn "bash" "-c" "killall waybar; waybar &"; }
