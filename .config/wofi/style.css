@@ -3,6 +3,7 @@
 @define-color lavender --wofi-color7;
 @define-color text --wofi-color1;
 @define-color bg --wofi-color0;
+@define-color selection mix(@mauve, @text, 0.25);
 
 * {
     font-family: "JetBrainsMono Nerd Font";
@@ -57,8 +58,10 @@ window {
     transition: all 0.2s ease-in-out;
 }
 
-#entry:selected #text {
-    color: @text;
+#entry:selected #text,
+#entry:selected arrow,
+#entry:drop(active) #text {
+    color: @bg;
     font-weight: bold;
     background-color: transparent; /* Force transparency when selected */
 }
@@ -75,12 +78,12 @@ window {
 }
 
 #entry:selected {
-    background-color: @mauve;
+    background-color: @selection;
     border-radius: 12px;
 }
 
 #entry:drop(active) {
-    background-color: @lavender;
+    background-color: @selection;
 }
 
 list, #scroll, #inner-box {
