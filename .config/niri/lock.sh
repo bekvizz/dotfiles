@@ -34,7 +34,13 @@ if [[ -f "$cache/wal" && -r "$cache/wal" ]]; then
     fi
 fi
 
+fade_args=()
+if [[ ${1:-} == --fade ]]; then
+    fade_args=(--fade-in 0.2)
+fi
+
 exec swaylock \
+    "${fade_args[@]}" \
     --daemonize \
     --color "$BG" \
     "${image_args[@]}" \

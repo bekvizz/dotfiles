@@ -20,7 +20,7 @@ binds {
     // Desktop
     Mod+Shift+M hotkey-overlay-title="Toggle mirroring" { spawn "sh" "-c" "~/.config/niri/toggle-mirror.sh"; }
     Mod+Shift+B hotkey-overlay-title="Restart Waybar" { spawn "bash" "-c" "killall waybar; waybar &"; }
-    Mod+Alt+L hotkey-overlay-title="Lock session" { spawn "sh" "-c" "~/.config/niri/lock.sh"; }
+    Mod+Alt+L hotkey-overlay-title="Lock session" { spawn "sh" "-c" "~/.config/niri/lock.sh --fade"; }
 
     Mod+Shift+Slash { show-hotkey-overlay; }
 
