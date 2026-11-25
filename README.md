@@ -41,7 +41,7 @@ The rules make selected dialogs float, including Firefox Picture-in-Picture, Net
 
 The top bar is arranged in three areas:
 
-- **Left:** current Niri workspace, a compact group with the system tray, idle inhibitor and power menu, and the focused window title.
+- **Left:** current Niri workspace, wallpaper thumbnail with previous and next controls, a compact group with the system tray, idle inhibitor and power menu, and the focused window title.
 - **Right:** keyboard layout, notification-center status, power profile, network, CPU, memory, temperature, backlight, audio volume, battery and clock.
 
 The power menu is implemented by `~/.config/waybar/scripts/powermenu.sh` and offers lock, log out, suspend, reboot and power off. The idle-inhibitor module can be toggled directly from the bar.
@@ -85,7 +85,7 @@ Pywal16 generates a palette from the wallpaper and makes it available to the app
 | Zsh | Loads Pywal's terminal sequences when the cache file exists |
 | Starship | Uses the terminal's indexed color palette in its prompt format |
 
-Niri starts `~/.config/niri/set-wallpaper.sh` with the session. The script restores the last wallpaper recorded by Pywal16 (and its palette), then starts swaybg with that image. When no cached wallpaper is available, it falls back to `~/Pictures/wallpapers/eepy_pony.png`.
+Niri starts `~/.config/niri/set-wallpaper.sh` with the session. The script restores the last wallpaper recorded by Pywal16 (and its palette), then starts swaybg with that image. When no cached wallpaper is available, it falls back to `~/Pictures/Wallpapers/eepy_pony.png`.
 
 #### Niri autostart
 
@@ -128,12 +128,12 @@ Back up any existing files in `~/.config` and your home directory before copying
 
 ```bash
 mkdir -p ~/.config
-mkdir -p ~/Pictures/wallpapers
+mkdir -p ~/Pictures/Wallpapers
 mkdir -p "$HOME/Pictures/Desktop Screenshots"
 
 cp -a .config/. ~/.config/
 cp .zshrc .bash_profile "$HOME/"
-cp wallpapers/eepy_pony.png ~/Pictures/wallpapers/
+cp -n wallpapers/* ~/Pictures/Wallpapers/
 
 chmod +x ~/.config/niri/*.sh
 chmod +x ~/.config/waybar/scripts/*.sh
@@ -144,14 +144,16 @@ chmod +x ~/.config/waybar/scripts/*.sh
 Use the included script to set the wallpaper and generate the matching Pywal16 palette in one step:
 
 ```bash
-~/.config/niri/set-wallpaper.sh "$HOME/Pictures/wallpapers/eepy_pony.png"
+~/.config/niri/set-wallpaper.sh "$HOME/Pictures/Wallpapers/eepy_pony.png"
 ```
 
 In an interactive Zsh terminal, use the `setwallp` shortcut to switch images:
 
 ```bash
-setwallp "$HOME/Pictures/wallpapers/another-image.jpg"
+setwallp "$HOME/Pictures/Wallpapers/another-image.jpg"
 ```
+
+Cycle through images in `~/Pictures/Wallpapers/` with `setwallp --next` or `setwallp --prev`, or press **Mod + Alt + Right / Left**. Images are ordered by filename and wrap around at either end. Add images directly to that folder to include them on the next key press. The Waybar arrows run the same commands. Click the thumbnail to advance or right-click it to go back.
 
 You can also run it without an argument:
 
@@ -200,6 +202,7 @@ The repository does not configure a display manager or perform a system-wide Arc
 | `Mod + E` | Open Thunar |
 | `Mod + V` | Open clipboard history |
 | `Mod + Alt + L` | Lock the session |
+| `Mod + Alt + Left` / `Mod + Alt + Right` | Previous / next wallpaper |
 | `Mod + Shift + B` | Restart Waybar |
 | `Mod + Shift + M` | Toggle display mirroring |
 | `Mod + O` | Toggle the workspace overview |
@@ -313,7 +316,7 @@ A few settings are specific to the machine this configuration was built on. Revi
 - **Displays:** Niri configures the internal output `eDP-1` at 1.25 scaling. The mirror script uses `eDP-1` as its source, and the Niri window rule places `wl-mirror` on `HDMI-A-1`. Change these output names and the scale to match your hardware.
 - **Backlight:** SwayNC's slider is explicitly configured for the `intel_backlight` device. Your system may expose a different device name.
 - **Input:** the config enables a TrackPoint profile and middle-button emulation, in addition to a flat mouse acceleration profile. Remove or adapt the TrackPoint block on systems without one.
-- **Wallpaper:** `~/.config/niri/set-wallpaper.sh` uses the last wallpaper selected through Pywal16. On a fresh setup it falls back to `~/Pictures/wallpapers/eepy_pony.png`. Use the script with an image path to change both the background and generated colors together.
+- **Wallpaper:** `~/.config/niri/set-wallpaper.sh` uses the last wallpaper selected through Pywal16. On a fresh setup it falls back to `~/Pictures/Wallpapers/eepy_pony.png`. Use the script with an image path to change both the background and generated colors together.
 - **Application paths:** `.config/environment.d/10-applications.conf` appends version-specific IntelliJ IDEA and PyCharm directories under `~/Applications`. Update or remove those entries to match your local installations.
 - **Packages:** `pkglist.txt` is a personal package snapshot and includes Intel graphics/media packages, firmware, kernels and applications that may not be relevant to another system. Review it rather than treating it as a minimal dependency list.
 

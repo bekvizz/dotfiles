@@ -1,15 +1,28 @@
 binds {
-    // Standard Wayland launcher and bar bindings
-    Mod+Space hotkey-overlay-title="Open Wofi" { spawn "wofi" "--show" "drun"; }
-    Mod+E hotkey-overlay-title="Open Thunar" { spawn "thunar"; }
-    Mod+Alt+L hotkey-overlay-title="Lock" { spawn "sh" "-c" "~/.config/niri/lock.sh"; }
-    Mod+V hotkey-overlay-title="Open Clipboard History" { spawn "sh" "-c" r#"exec "$HOME/.config/niri/clipboard.sh" pick"#; }
+    // Apps
+    Mod+Space hotkey-overlay-title="Launcher" { spawn "wofi" "--show" "drun"; }
+    Mod+D hotkey-overlay-title="Terminal" { spawn "alacritty"; }
+    Mod+E hotkey-overlay-title="File manager" { spawn "thunar"; }
+    Mod+V hotkey-overlay-title="Clipboard history" { spawn "sh" "-c" r#"exec "$HOME/.config/niri/clipboard.sh" pick"#; }
+
+    // Windows
+    Mod+Shift+F hotkey-overlay-title="Toggle fullscreen" { fullscreen-window; }
+    Alt+Print hotkey-overlay-title="Capture active window" { screenshot-window; }
+
+    // Workspaces
+    Mod+1 hotkey-overlay-title="Switch workspace (1–9)" { focus-workspace 1; }
+    Mod+Ctrl+1 hotkey-overlay-title="Move column to workspace (1–9)" { move-column-to-workspace 1; }
+
+    // Wallpaper
+    Mod+Alt+Left hotkey-overlay-title="Previous wallpaper" { spawn-sh r#""$HOME/.config/niri/set-wallpaper.sh" --prev"#; }
+    Mod+Alt+Right hotkey-overlay-title="Next wallpaper" { spawn-sh r#""$HOME/.config/niri/set-wallpaper.sh" --next"#; }
+
+    // Desktop
+    Mod+Shift+M hotkey-overlay-title="Toggle mirroring" { spawn "sh" "-c" "~/.config/niri/toggle-mirror.sh"; }
+    Mod+Shift+B hotkey-overlay-title="Restart Waybar" { spawn "bash" "-c" "killall waybar; waybar &"; }
+    Mod+Alt+L hotkey-overlay-title="Lock session" { spawn "sh" "-c" "~/.config/niri/lock.sh"; }
 
     Mod+Shift+Slash { show-hotkey-overlay; }
-    Mod+Shift+B hotkey-overlay-title="Restart Waybar" { spawn "bash" "-c" "killall waybar; waybar &"; }
-    Mod+Shift+M hotkey-overlay-title="Toggle Mirror" { spawn "sh" "-c" "~/.config/niri/toggle-mirror.sh"; }
-
-    Mod+D hotkey-overlay-title="Open a Terminal" { spawn "alacritty"; }
 
     // volume keys mappings using wpctl (WirePlumber native)
     XF86AudioRaiseVolume allow-when-locked=true { spawn "wpctl" "set-volume" "-l" "1.0" "@DEFAULT_AUDIO_SINK@" "5%+"; }
@@ -102,7 +115,6 @@ binds {
     Mod+Ctrl+Shift+WheelScrollDown { move-column-right; }
     Mod+Ctrl+Shift+WheelScrollUp   { move-column-left; }
 
-    Mod+1 { focus-workspace 1; }
     Mod+2 { focus-workspace 2; }
     Mod+3 { focus-workspace 3; }
     Mod+4 { focus-workspace 4; }
@@ -111,7 +123,6 @@ binds {
     Mod+7 { focus-workspace 7; }
     Mod+8 { focus-workspace 8; }
     Mod+9 { focus-workspace 9; }
-    Mod+Ctrl+1 { move-column-to-workspace 1; }
     Mod+Ctrl+2 { move-column-to-workspace 2; }
     Mod+Ctrl+3 { move-column-to-workspace 3; }
     Mod+Ctrl+4 { move-column-to-workspace 4; }
@@ -130,7 +141,6 @@ binds {
     Mod+Shift+R { switch-preset-window-height; }
     Mod+Ctrl+R { reset-window-height; }
     Mod+F { maximize-column; }
-    Mod+Shift+F { fullscreen-window; }
     Mod+Ctrl+F { expand-column-to-available-width; }
 
     Mod+C { center-column; }
@@ -149,7 +159,6 @@ binds {
     Print { screenshot show-pointer=false; }
     Ctrl+Print { screenshot-screen show-pointer=false; }
     Ctrl+Shift+Print { screenshot-screen show-pointer=false write-to-disk=false; }
-    Alt+Print { screenshot-window; }
 
     Mod+Escape allow-inhibiting=false { toggle-keyboard-shortcuts-inhibit; }
 

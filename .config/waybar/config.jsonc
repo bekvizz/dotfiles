@@ -11,7 +11,7 @@
 
   // Choose the order of the modules
 
-  "modules-left": ["niri/workspaces", "group/custom-group", "niri/window"],
+  "modules-left": ["niri/workspaces", "group/wallpaper", "group/custom-group", "niri/window"],
 
   "modules-center": [],
 
@@ -32,6 +32,32 @@
   "group/custom-group": {
     "orientation": "horizontal",
     "modules": ["tray", "idle_inhibitor", "custom/power"],
+  },
+
+  "group/wallpaper": {
+    "orientation": "horizontal",
+    "modules": [
+      "custom/wallpaper-prev",
+      "image#wallpaper-preview",
+      "custom/wallpaper-next"
+    ]
+  },
+  "custom/wallpaper-prev": {
+    "format": "❮",
+    "tooltip-format": "Previous wallpaper",
+    "on-click": "niri msg action spawn -- \"$HOME/.config/niri/set-wallpaper.sh\" --prev"
+  },
+  "image#wallpaper-preview": {
+    "exec": "printf '%s\\n' \"${PYWAL_CACHE_DIR:-${XDG_CACHE_HOME:-$HOME/.cache}/wal}/waybar-wallpaper.png\" 'Click for next wallpaper · Right-click for previous'",
+    "size": 52,
+    "signal": 7,
+    "on-click": "niri msg action spawn -- \"$HOME/.config/niri/set-wallpaper.sh\" --next",
+    "on-click-right": "niri msg action spawn -- \"$HOME/.config/niri/set-wallpaper.sh\" --prev"
+  },
+  "custom/wallpaper-next": {
+    "format": "❯",
+    "tooltip-format": "Next wallpaper",
+    "on-click": "niri msg action spawn -- \"$HOME/.config/niri/set-wallpaper.sh\" --next"
   },
 
   // Modules configuration
